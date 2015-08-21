@@ -1,35 +1,33 @@
 package Pages;
 
-import org.openqa.selenium.WebDriver;
+import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.By;
+import net.thucydides.core.annotations.DefaultUrl;
+import org.openqa.selenium.support.FindBy;
 
-public class MainPage {
+@DefaultUrl("https://www.budgetpulse.com")
 
-    private static WebElement element = null;
+public class MainPage extends PageObject {
 
-    public static WebElement LoginLink(WebDriver driver){
-        element = driver.findElement(By.linkText("Login"));
-        return element;
-    }
+    @FindBy(linkText = "Login")
+    public WebElement LoginLink;
 
-    public static WebElement EmailField(WebDriver driver){
-        element = driver.findElement(By.id("login_username"));
-        return element;
-    }
+    @FindBy(id = "login_username")
+    public WebElement EmailField;
 
-    public static WebElement PasswordField(WebDriver driver){
-        element = driver.findElement(By.id("login_password"));
-        return element;
-    }
+    @FindBy(id = "login_password")
+    public WebElement PasswordField;
 
-    public static WebElement LoginButton(WebDriver driver){
-        element = driver.findElement(By.id("login-link"));
-        return element;
-    }
+    @FindBy(id = "login-link")
+    public WebElement LoginButton;
 
-    public static WebElement Greeting(WebDriver driver){
-        element = driver.findElement(By.className("first"));
-        return element;
-    }
+    @FindBy(className = "first")
+    public WebElement Greeting;
+
+    @FindBy(id = "authMessage")
+    public WebElement Error;
+
+    @FindBy(linkText = "Log Out")
+    public WebElement LogoutLink;
+
 }

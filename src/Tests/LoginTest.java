@@ -1,38 +1,43 @@
 package Tests;
 
-import Actions.MainActions;
-import org.junit.Assert;
-import org.junit.AfterClass;
-import org.junit.Test;
-import org.junit.BeforeClass;
+import Steps.MainPageSteps;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import net.serenitybdd.junit.runners.SerenityRunner;
+import net.thucydides.core.annotations.Managed;
+import net.thucydides.core.annotations.Steps;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
+
+@RunWith(SerenityRunner.class)
 public class LoginTest {
-    private static WebDriver driver;
-    public String email = "br59241@gmail.com";
-    public String password = "oDo94oZmbB";
+    @Managed(driver="firefox", uniqueSession = true)
+    WebDriver driver;
 
-    @BeforeClass
-    public static void OpenBrowser() {
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
+    private String email = "br59241@gmail.com";
+    private String password = "oDo94oZmbB";
+
+    @Steps
+    MainPageSteps user;
+
+    @Test
+    public void user_should_see_a_dashboard_after_login() {
+        user.opens_main_page();
+        user.clicks_login_link();
+        user.enters_email(email);
+        user.enters_password(password);
+        user.clicks_login_button();
+        user.can_see_greeting(email);
+        user.logs_out();
     }
 
     @Test
-    //login attempt with valid email and password
-    public void LoginSuccess() {
-        MainActions.GoTo(driver);
-        MainActions.ClickLoginLink(driver);
-        MainActions.InputEmail(driver, email);
-        MainActions.InputPassword(driver, password);
-        MainActions.ClickLoginButton(driver);
-        Assert.assertTrue(MainActions.AssertSuccessGreeting(driver, email));
+    public void user_should_see_an_error_when_password_is_wrong() {
+        user.opens_main_page();
+        user.clicks_login_link();
+        user.enters_email(email);
+        user.enters_password(password+"fail");
+        user.clicks_login_button();
+        user.can_see_error_message();
     }
-
-    @AfterClass
-    public static void CloseBrowser() {
-        driver.quit();
-    }
-
 }
