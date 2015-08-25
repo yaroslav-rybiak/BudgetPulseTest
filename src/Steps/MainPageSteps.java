@@ -33,8 +33,8 @@ public class MainPageSteps {
     }
 
     @Step
-    public void can_see_greeting(String email) {
-        assertThat(mainPage.Greeting.getText().equals("Welcome, " + email + "."));
+    public boolean can_see_greeting() {
+        return mainPage.Greeting.isDisplayed();
     }
 
     @Step

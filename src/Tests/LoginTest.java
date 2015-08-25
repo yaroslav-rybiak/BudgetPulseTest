@@ -3,6 +3,7 @@ package Tests;
 import Steps.MainPageSteps;
 import org.openqa.selenium.WebDriver;
 import net.serenitybdd.junit.runners.SerenityRunner;
+import static org.assertj.core.api.Assertions.assertThat;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class LoginTest {
         user.enters_email(email);
         user.enters_password(password);
         user.clicks_login_button();
-        user.can_see_greeting(email);
+        assertThat(user.can_see_greeting());
         user.logs_out();
     }
 
