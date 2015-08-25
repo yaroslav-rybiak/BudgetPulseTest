@@ -3,20 +3,20 @@ package Tests;
 import Steps.MainPageSteps;
 import org.openqa.selenium.WebDriver;
 import net.serenitybdd.junit.runners.SerenityRunner;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-
 @RunWith(SerenityRunner.class)
 public class LoginTest {
+
+    private String email = TestData.Credentials.getEmail();
+    private String password = TestData.Credentials.getPassword();
+
     @Managed(driver="firefox", uniqueSession = true)
     WebDriver driver;
-
-    private String email = "br59241@gmail.com";
-    private String password = "oDo94oZmbB";
 
     @Steps
     MainPageSteps user;
@@ -28,7 +28,7 @@ public class LoginTest {
         user.enters_email(email);
         user.enters_password(password);
         user.clicks_login_button();
-        assertThat(user.can_see_greeting());
+        user.can_see_greeting();
         user.logs_out();
     }
 
@@ -37,8 +37,16 @@ public class LoginTest {
         user.opens_main_page();
         user.clicks_login_link();
         user.enters_email(email);
-        user.enters_password(password+"fail");
+        user.enters_password(password + "fail");
         user.clicks_login_button();
         user.can_see_error_message();
+    }
+
+    @Test
+    public void searching_public_goals_by_email() {
+        user.opens_main_page();
+        user.clicks_contribute_button();
+        user.searches_for_email(email);
+        user.can_see_public_goals();
     }
 }

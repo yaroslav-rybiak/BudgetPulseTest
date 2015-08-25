@@ -30,4 +30,15 @@ public class MainPage extends PageObject {
     @FindBy(linkText = "Log Out")
     public WebElement LogoutLink;
 
+    @FindBy(id = "contributefriend")
+    public WebElement ContributeButton;
+
+    @FindBy(id = "nav_search_email")
+    public WebElement EmailSearchField;
+
+    @FindBy(id = "info")
+    public WebElement PublicProfile;
+
+    @FindBy(id = "search-link")
+    public WebElement SearchButton;
 }

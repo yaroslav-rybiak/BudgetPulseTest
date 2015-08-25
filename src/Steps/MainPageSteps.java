@@ -3,6 +3,7 @@ package Steps;
 import Pages.MainPage;
 import net.thucydides.core.annotations.Step;
 import static org.assertj.core.api.Assertions.assertThat;
+
 public class MainPageSteps {
 
     MainPage mainPage;
@@ -33,8 +34,8 @@ public class MainPageSteps {
     }
 
     @Step
-    public boolean can_see_greeting() {
-        return mainPage.Greeting.isDisplayed();
+    public void can_see_greeting() {
+        assertThat(mainPage.Greeting.isDisplayed());
     }
 
     @Step
@@ -45,6 +46,22 @@ public class MainPageSteps {
     @Step
     public void can_see_error_message() {
         assertThat(mainPage.Error.isDisplayed());
+    }
+
+    @Step
+    public void clicks_contribute_button() {
+        mainPage.ContributeButton.click();
+    }
+
+    @Step
+    public void searches_for_email(String email) {
+        mainPage.EmailSearchField.sendKeys(email);
+        mainPage.SearchButton.click();
+    }
+
+    @Step
+    public void can_see_public_goals() {
+        assertThat(mainPage.PublicProfile.isDisplayed());
     }
 
 }
