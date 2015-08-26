@@ -1,6 +1,7 @@
 package Tests;
 
 import Steps.MainPageSteps;
+import net.thucydides.core.annotations.Pending;
 import org.openqa.selenium.WebDriver;
 import net.serenitybdd.junit.runners.SerenityRunner;
 

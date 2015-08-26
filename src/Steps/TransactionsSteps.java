@@ -11,6 +11,7 @@ public class TransactionsSteps {
 
     @Step
     public void logs_in(String email, String password) {
+        mainPage.open();
         mainPage.LoginLink.click();
         mainPage.EmailField.sendKeys(email);
         mainPage.PasswordField.sendKeys(password);

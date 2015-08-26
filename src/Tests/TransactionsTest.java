@@ -22,10 +22,9 @@ public class TransactionsTest {
     TransactionsSteps user;
 
     @Test
-    @Pending
     public void user_adds_income() {
         user.logs_in(email, password);
-        user.opens_transactions_page();
-        user.clicks_add_transaction();
+        //user.opens_transactions_page();
+        //user.clicks_add_transaction();
     }
 }
