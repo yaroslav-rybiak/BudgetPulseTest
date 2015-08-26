@@ -61,6 +61,7 @@
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -70,9 +71,6 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.18</version>
                 <configuration>
-                    <includes>
-                        <include>**/features/**/When*.java</include>
-                    </includes>
                     <systemProperties>
                         <webdriver.driver>${webdriver.driver}</webdriver.driver>
                     </systemProperties>
